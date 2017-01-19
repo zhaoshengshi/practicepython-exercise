@@ -1,5 +1,8 @@
 import random
 
+CHOICES = {1: 'Rock', 2: 'Paper', 3: 'Scissors'}
+RESULTS = [[0, -1, 1], [1, 0, -1], [-1, 1, 0]]
+
 def ask():
     while True:
         s = input('Let\'s play the game:\n\t1. Rock\n\t2. Paper\n\t3. Scissors?\nWhat you choose?: ')
@@ -17,23 +20,13 @@ def ai():
     return random.randint(1, 3)
 
 def compete(c, s):
-    if s == c:
+    r = RESULTS[c-1][s-1]
+    if r == 0:
         print('HaHa, no one wins!')
-    elif c == 1:
-        if s == 2:
-            print('I\'m Paper, I win!')
-        else:
-            print('I\'m Scissors, You win!')
-    elif c == 2:
-        if s == 1:
-            print('I\'m Rock, You win!')
-        else:
-            print('I\'m Scissors, I win!')
-    elif c == 3:
-        if s == 1:
-            print('I\'m Rock, I win!')
-        else:
-            print('I\'m Paper, You win!')
+    elif r == -1:
+        print('You\'re %s, I\'m %s, I win!' % (CHOICES[c], CHOICES[s]))
+    else:
+        print('You\'re %s, I\'m %s, You win!' % (CHOICES[c], CHOICES[s]))
 
 def another():
     while True:
