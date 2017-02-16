@@ -26,6 +26,13 @@ class ChatServer(TCPServer):
         NewUser(address, stream)
 
 
+
 server = ChatServer()
 server.listen(8000)
-IOLoop.instance().start()
+
+try:
+    IOLoop.instance().start()
+except KeyboardInterrupt:
+    print('Cancelled by Ctrl-C...')
+
+IOLoop.instance().stop()
